@@ -13,6 +13,8 @@
             "email": "carlos.gonzalez@litermi.com"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Litermi\\SecretsDriver\\": "src/app"
