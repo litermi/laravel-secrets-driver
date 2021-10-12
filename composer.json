@@ -1,0 +1,33 @@
+{
+    "name": "litermi/laravel-secrets-driver",
+    "description": "Easy data retrieval from AWS Secrets Manager API and beyond",
+    "type": "library",
+    "license": "propietary",
+    "require": {
+        "aws/aws-sdk-php-laravel": "~3.0",
+        "laravel/framework": "^7.0 || ^8.0"
+    },
+    "authors": [
+        {
+            "name": "Carlos González",
+            "email": "carlos.gonzalez@litermi.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Litermi\\SecretsDriver\\": "src/app"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aws\\Laravel\\AwsServiceProvider",
+                "Litermi\\SecretsDriver\\Providers\\SecretsDriverProvider",
+                "Litermi\\SecretsDriver\\Providers\\DbCredentialsServiceProvider"
+            ],
+            "aliases": {
+                "AWS": "Aws\\Laravel\\AwsFacade"
+            }
+        }
+    }
+}
