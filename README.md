@@ -182,7 +182,8 @@ php artisan vendor:publish --tag=secrets-driver-config
 
 ## License
 
-This package can only be used in projects created and/or managed by Litermi and offers no license. Any use without explicit authorization is strictly forbidden.
+Litermi Secrets Driver for Laravel is released under the MIT Licence. See the bundled [LICENSE](https://github.com/litermi/elasticlog/blob/master/LICENSE.md) file for details.
+
 
 ## Acknowledgements
 

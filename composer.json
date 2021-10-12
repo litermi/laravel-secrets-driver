@@ -2,7 +2,7 @@
     "name": "litermi/laravel-secrets-driver",
     "description": "Easy data retrieval from AWS Secrets Manager API and beyond",
     "type": "library",
-    "license": "propietary",
+    "license": "MIT",
     "require": {
         "aws/aws-sdk-php-laravel": "~3.0",
         "laravel/framework": "^7.0 || ^8.0"
