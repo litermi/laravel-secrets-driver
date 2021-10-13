@@ -69,13 +69,23 @@ trait HasRemoteSecrets
     }
 
     /**
+     * Protected function to return the project's desired production tag for secrets' names
+     * 
+     * @return string The tag
+     */
+    protected function getProductionTag()
+    {
+        return config("secrets-driver.production-tag");
+    }
+
+    /**
      * Protected method to get a normalized environment tag
      * @return string The tag
      */
     protected function getEnvTag()
     {
         /** @var string Normalized production tag */
-        $normalProdTag = config("secrets-driver.production-tag");
+        $normalProdTag = $this->getProductionTag();
 
         /** @var string Raw environment tag */
         $tag = Str::lower(
@@ -180,15 +190,26 @@ trait HasRemoteSecrets
     }
 
     /**
-     * Protected method to get the level of severity an retrieval failure should log
+     * Protected method to get the raw level of severity a retrieval failure should log
      * 
      * @return string Level of severity tag (according to RFC 5424)
      */
     protected function getSeverityLevel()
     {
+        return config("secrets-driver.severity-level");
+    }
+
+    /**
+     * Protected method to get the level of severity a retrieval failure should log,
+     * normalized for log usage (lowercase and for use of the Log façade)
+     * 
+     * @return string Level of severity tag
+     */
+    protected function getNormalizedSeverityLevel()
+    {
         /** @var string Severity level */
         $severity = Str::lower(
-            config("secrets-driver.severity-level")
+            $this->getSeverityLevel()
         );
 
         if ($severity == "informational") {
@@ -345,7 +366,7 @@ trait HasRemoteSecrets
         }
 
         /* Logging required! */
-        logger()->{$this->getSeverityLevel()}($errorMessage);
+        logger()->{$this->getNormalizedSeverityLevel()}($errorMessage);
     }
 
     /**
