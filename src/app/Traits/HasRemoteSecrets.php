@@ -24,8 +24,8 @@ trait HasRemoteSecrets
 
     /**
      * Protected method to retrieve a secret's value from the manager
-     * @param  string Full secret name
-     * @return mixed  The value
+     * @param  string $secret Full secret name
+     * @return mixed          The value
      * @throws SecretsManagerException|SecretsRetrievalException
      */
     protected function getRemoteSecretData(string $secret)
@@ -131,7 +131,8 @@ trait HasRemoteSecrets
     /**
      * Protected method to get a time interval from a string
      * 
-     * @return CarbonInterval Time interval
+     * @param  string         $interval Time interval
+     * @return CarbonInterval           Time interval
      */
     protected function createTimeIntervalFromString(string $interval)
     {
@@ -143,9 +144,9 @@ trait HasRemoteSecrets
      * 
      * If no date is given, now() is used.
      * 
-     * @param  string      Time interval
-     * @param  null|Carbon Date instance to add to
-     * @return Carbon      New date
+     * @param  string      $interval Time interval
+     * @param  null|Carbon $date     Date instance to add to
+     * @return Carbon                New date
      */
     protected function createDateFromTimeInterval(string $interval, Carbon $date = null)
     {
@@ -262,7 +263,7 @@ trait HasRemoteSecrets
     /**
      * Protected method to check if a particular cache exists
      * @param   string  $key Raw key name
-     * @return  boolean Presence flag
+     * @return  boolean      Presence flag
      */
     protected function cacheExists(string $key)
     {
@@ -295,7 +296,7 @@ trait HasRemoteSecrets
     /**
      * Protected method to check if a particular notification cache exists
      * @param   string  $key Raw key name
-     * @return  boolean Presence flag
+     * @return  boolean      Presence flag
      */
     protected function notificationCacheExists(string $key)
     {
@@ -308,8 +309,8 @@ trait HasRemoteSecrets
 
     /**
      * Protected method to create a cache key
-     * @param string      $key   Raw key name
-     * @param mixed       $value Value to store
+     * @param string $key   Raw key name
+     * @param mixed  $value Value to store
      * @return void
      */
     protected function createCache(string $key, $value)
