@@ -143,9 +143,9 @@ trait HasRemoteSecrets
      * 
      * If no date is given, now() is used.
      * 
-     * @param string Time interval
-     * @param null|Carbon Date instance to add to
-     * @param Carbon New date
+     * @param  string      Time interval
+     * @param  null|Carbon Date instance to add to
+     * @return Carbon      New date
      */
     protected function createDateFromTimeInterval(string $interval, Carbon $date = null)
     {
