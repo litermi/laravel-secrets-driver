@@ -46,7 +46,7 @@ To retrieve secrets within any object, make its class use the `Litermi\SecretsDr
     use Illuminate\Support\ServiceProvider;
     use Litermi\SecretsDriver\Traits\HasRemoteSecrets;
 
-    class TppsConfigProvider extends ServiceProvdier
+    class TppsConfigProvider extends ServiceProvider
     {
         /* Trait included! */
         use HasRemoteSecrets;
@@ -90,7 +90,6 @@ The `$this->getSecret()` method accepts a single parameter: a string or an array
 In case the trait's methods need to be changed (for example, to make a specific configuration override that must not be project-wide), include a method override in the class that uses the trait. Refer to the trait's code to know which method to override.
 
 ```php
-    use Carbon\CarbonInterval;
     use Litermi\SecretsDriver\Traits\HasRemoteSecrets;
 
     class PaywayRepository
@@ -115,13 +114,11 @@ In case the trait's methods need to be changed (for example, to make a specific 
          * 
          * Override of HasRemoteSecrets::getCacheInterval()
          * 
-         * @return CarbonInterval Time interval
+         * @return string Time interval
          */
         protected function getCacheInterval()
         {
-            return CarbonInterval::fromString(
-                "15s"
-            );
+            return "15s";
         }
         ...
     }

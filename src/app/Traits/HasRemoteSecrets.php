@@ -3,6 +3,7 @@
 namespace Litermi\SecretsDriver\Traits;
 
 use \Exception;
+use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Str;
 use Litermi\SecretsDriver\Exceptions\SecretsManagerException;
@@ -119,39 +120,63 @@ trait HasRemoteSecrets
     }
 
     /**
-     * Protected method to get the time interval for regular cache
+     * Protected method to get a time interval from a string
      * 
      * @return CarbonInterval Time interval
      */
+    protected function createTimeIntervalFromString(string $interval)
+    {
+        return CarbonInterval::fromString($interval);
+    }
+
+    /**
+     * Protected method to create a date from an interval.
+     * 
+     * If no date is given, now() is used.
+     * 
+     * @param string Time interval
+     * @param null|Carbon Date instance to add to
+     * @param Carbon New date
+     */
+    protected function createDateFromTimeInterval(string $interval, Carbon $date = null)
+    {
+        if (is_null($date)) {
+            $date = now();
+        }
+
+        return $date->add(
+            $this->createTimeIntervalFromString($interval)
+        );
+    }
+
+    /**
+     * Protected method to get the time interval for regular cache
+     * 
+     * @return string Time interval
+     */
     protected function getCacheInterval()
     {
-        return CarbonInterval::fromString(
-            config("secrets-driver.cache-interval.regular")
-        );
+        return config("secrets-driver.cache-interval.regular");
     }
 
     /**
      * Protected method to get the time interval for backup cache
      * 
-     * @return CarbonInterval Time interval
+     * @return string Time interval
      */
     protected function getBackupCacheInterval()
     {
-        return CarbonInterval::fromString(
-            config("secrets-driver.cache-interval.backup")
-        );
+        return config("secrets-driver.cache-interval.backup");
     }
 
     /**
      * Protected method to get the time interval for notification cache
      * 
-     * @return CarbonInterval Time interval
+     * @return string Time interval
      */
     protected function getNotificationCacheInterval()
     {
-        return CarbonInterval::fromString(
-            config("secrets-driver.cache-interval.notification")
-        );
+        return config("secrets-driver.cache-interval.notification");
     }
 
     /**
@@ -276,14 +301,14 @@ trait HasRemoteSecrets
             /** Set the cache key and a backup, in case it expires */
             cache(
                 ["{$cacheKey}" => $value,],
-                now()->add(
+                $this->createDateFromTimeInterval(
                     $this->getCacheInterval()
                 )
             );
 
             cache(
                 ["{$cacheKey}" => $value,],
-                now()->add(
+                $this->createDateFromTimeInterval(
                     $this->getBackupCacheInterval()
                 )
             );
@@ -313,7 +338,7 @@ trait HasRemoteSecrets
             /* To avoid log service flooding */
             cache(
                 ["{$this->getPrefixedNotificationCacheKey($key)}" => 'sent',],
-                now()->add(
+                $this->createDateFromTimeInterval(
                     $this->getNotificationCacheInterval()
                 )
             );
@@ -321,6 +346,16 @@ trait HasRemoteSecrets
 
         /* Logging required! */
         logger()->{$this->getSeverityLevel()}($errorMessage);
+    }
+
+    /**
+     * Protected method to retrieve the secret's remote name format
+     * 
+     * @return string The format
+     */
+    protected function getSecretNameFormat()
+    {
+        return config("secrets-driver.secret-name-format");
     }
 
     /**
@@ -334,7 +369,7 @@ trait HasRemoteSecrets
     protected function parseRemoteSecretName(string $key, string $project, string $env)
     {
         /** @var string Keyname format */
-        $keyname = config("secrets-driver.secret-name-format");
+        $keyname = $this->getSecretNameFormat();
 
         /* Build the keyname by changing placeholders for final values */
 
