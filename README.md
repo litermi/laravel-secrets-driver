@@ -142,9 +142,9 @@ In case database credentials need to be taken from the remote manager, add the `
 
 If the current environment is set as `local`, database credentials will be the same as in Laravel's `.env` file, to allow usage of the local database for testing and configuration; otherwise, when on a non-local environment, any connection that has the property `use_secrets_driver` set as `true` will be looked for in the remote secrets manager, using the name convention and the connection name as the secret's name:
 
-**Ex: stage/blog/mysql**
+**Ex.: stage/blog/mysql**
 
-There is no minimum database configuration needed to be saved in the secret; however, is is recommended that these variables be provided (values are examples):
+There is no minimum database configuration needed to be saved in the secret; however, it is recommended that these variables be provided (values are examples):
 
 ```javascript
 {
