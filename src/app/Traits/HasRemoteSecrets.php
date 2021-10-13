@@ -80,6 +80,7 @@ trait HasRemoteSecrets
 
     /**
      * Protected method to get a normalized environment tag
+     * 
      * @return string The tag
      */
     protected function getEnvTag()
@@ -88,16 +89,14 @@ trait HasRemoteSecrets
         $normalProdTag = $this->getProductionTag();
 
         /** @var string Raw environment tag */
-        $tag = Str::lower(
-            app()->environment()
-        );
+        $tag = app()->environment();
 
         if ($this->isEnvProduction() && !empty($normalProdTag)) {
             /* Normalize environment tag */
             $tag = $normalProdTag;
         }
 
-        return $tag;
+        return Str::lower($tag);
     }
 
     /**
