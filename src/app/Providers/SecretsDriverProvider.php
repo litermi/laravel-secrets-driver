@@ -51,7 +51,7 @@ class SecretsDriverProvider extends ServiceProvider
             /** @var string Manager internal namespace; */
             $internalNamespace = "Litermi\\SecretsDriver\\Managers";
 
-            /** @var string Manager internal namespace; */
+            /** @var string Manager local namespace; */
             $localNamespace = "App\\SecretsDriver\\Managers";
 
             if (class_exists($managerString) && is_a($managerString, ManagesSecrets::class, true)) {
