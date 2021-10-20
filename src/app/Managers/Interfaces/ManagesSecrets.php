@@ -1,6 +1,6 @@
 <?php
 
-namespace Litermi\SecretsDriver\Managers\Contracts;
+namespace Litermi\SecretsDriver\Managers\Interfaces;
 
 interface ManagesSecrets
 {

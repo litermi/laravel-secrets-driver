@@ -8,7 +8,7 @@ use Carbon\CarbonInterval;
 use Illuminate\Support\Str;
 use Litermi\SecretsDriver\Exceptions\SecretsManagerException;
 use Litermi\SecretsDriver\Exceptions\SecretsRetrievalException;
-use Litermi\SecretsDriver\Managers\Contracts\ManagesSecrets;
+use Litermi\SecretsDriver\Managers\Interfaces\ManagesSecrets;
 
 /**
  * Reusable trait to retrieve remote secrets from a secrets manager.

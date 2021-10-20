@@ -34,7 +34,7 @@ By default, the package is configured to work with the AWS Secrets Manager. To u
 
 #### Custom Secrets Manager
 
-To select a secrets manager, the environmental variable `SECRETS_DRIVER_MANAGER` can be changed to provide a new value; this value can be a full classname or a string that can be made a StudlyCase prefix for a classname (either on `Litermi\SecretsDriver\Managers\<TagName>SecretsManager` or a local equivalent on `App\SecretsDriver\Managers\<TagName>SecretsManager`). Whatever the case, the target class must implement the `Litermi\SecretsDriver\Managers\Contracts\ManagesSecrets` interface. The default value is `"aws"`.
+To select a secrets manager, the environmental variable `SECRETS_DRIVER_MANAGER` can be changed to provide a new value; this value can be a full classname or a string that can be made a StudlyCase prefix for a classname (either on `Litermi\SecretsDriver\Managers\<TagName>SecretsManager` or a local equivalent on `App\SecretsDriver\Managers\<TagName>SecretsManager`). Whatever the case, the target class must implement the `Litermi\SecretsDriver\Managers\Interfaces\ManagesSecrets` interface. The default value is `"aws"`.
 
 ## Trait usage
 
