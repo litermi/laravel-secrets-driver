@@ -179,9 +179,9 @@ php artisan vendor:publish --tag=secrets-driver-config
 
 ## License
 
-Litermi Secrets Driver for Laravel is released under the MIT Licence. See the bundled [LICENSE](https://github.com/litermi/elasticlog/blob/master/LICENSE.md) file for details.
+Litermi Secrets Driver for Laravel is released under the MIT Licence. See the bundled [LICENSE](https://github.com/litermi/laravel-secrets-driver/blob/master/LICENSE.md) file for details.
 
 
 ## Acknowledgements
 
-This package is heavily influenced by the previous work made in litermi/aws-secret-dbdriver, authored by Diego Cotelo (diego.cotelo@litermi.com).
+This package is heavily influenced by the previous work made in [litermi/aws-secret-dbdriver](https://github.com/litermi/aws-secret-dbdriver), authored by Diego Cotelo (diego.cotelo@litermi.com).
