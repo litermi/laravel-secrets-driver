@@ -469,7 +469,7 @@ trait HasRemoteSecrets
 
             /* To avoid log service flooding */
             $this->createNotificationCache(
-                $ae->getMessage(),
+                $sre->getMessage(),
                 $secret
             );
         } catch (SecretsManagerException | Exception $e) {
