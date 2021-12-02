@@ -480,10 +480,9 @@ trait HasRemoteSecrets
         if ($singleSecret) {
             /* Only one secret; remove superfluous level */
             $secretsData = collect($secretsData)
-                                ->flatten(1)
-                                ->all();
+                                ->first();
 
-            if (count($secretsData) == 1 && !is_array($secretValue = reset($secretsData))) {
+            if (!is_array($secretsData) || (count($secretsData) == 1 && !is_array($secretValue = reset($secretsData)))) {
                 /* Not an array; return the primitive only */
                 $secretsData = $secretValue;
             }
