@@ -51,7 +51,23 @@ trait HasRemoteSecrets
             return is_env_production();
         }
 
-        return app()->environment(['prod', 'production', 'produccion', 'producción', $this->getProductionTag()]);
+        /** @var string[] Typical production environment names */
+        $productionEnvs = [
+            'prod',
+            'production',
+            'produccion',
+            'producción',
+        ];
+
+        /** @var mixed Host project production tag */
+        $projectProductionTag = $this->getProductionTag();
+
+        if (!empty($projectProductionTag)) {
+            $productionEnvs[] = $projectProductionTag;
+        }        
+
+        /* Check for production environments */
+        return app()->environment($productionEnvs);
     }
 
     /**
