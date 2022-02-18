@@ -41,24 +41,26 @@ trait HasRemoteSecrets
     /**
      * Protected method to check if the current environment is production
      * 
-     * @return boolean
+     * @param   mixed   $data   Extra data to check to review if production
+     * @return  boolean
      */
-    protected function isEnvProduction()
+    protected function isEnvProduction($data = null)
     {
         if (function_exists("is_env_production")) {
             /* Use previously-established criteria */
             return is_env_production();
         }
 
-        return app()->environment(['prod', 'production', 'produccion', 'producción']);
+        return app()->environment(['prod', 'production', 'produccion', 'producción', $this->getProductionTag()]);
     }
 
     /**
      * Protected method to check if the current environment is local
      * 
+     * @param   mixed   $data   Extra data to check to review if local
      * @return boolean
      */
-    protected function isEnvLocal()
+    protected function isEnvLocal($data = null)
     {
         if (function_exists("is_env_local")) {
             /* Use previously-established criteria */
