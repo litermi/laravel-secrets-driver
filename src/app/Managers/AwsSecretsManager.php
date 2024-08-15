@@ -5,7 +5,7 @@ namespace Litermi\SecretsDriver\Managers;
 use \Exception;
 use Litermi\SecretsDriver\Exceptions\SecretsRetrievalException;
 use Litermi\SecretsDriver\Managers\Interfaces\ManagesSecrets;
-
+use Litermi\SecretsDriver\Exceptions\SecretsManagerException;
 class AwsSecretsManager implements ManagesSecrets
 {
     /** @var Aws\SecretsManager\SecretsManagerClient */
